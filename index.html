@@ -1,0 +1,92 @@
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>To-do List</title>
+
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <style>
+         .main-div {
+             width: 35%;
+             padding: 2rem 1rem 1rem;
+             box-shadow: 1px 1px 5px black;
+             margin: auto;
+         }
+         .main-div input {
+             width: 75%;
+             height: 3rem;
+             font-size: 1.6rem;
+             padding-left: 0.3rem;
+         }
+         .main-div button {
+             width: 20%;
+             height: 3.2rem;
+             font-size: 1.3rem;
+             background-color: rgb(20, 40, 40);
+             color: white;
+             border: none;
+         }
+         #to-do-box {
+             font-size: 1.4rem;
+             color: white;
+             list-style: none;
+             margin-right: 0.7rem;
+             padding-left: 0;
+         }
+         #to-do-box li {
+             background-color: rgb(20, 40, 40);
+             padding: 0.5rem 0 0.5rem 1rem;
+             margin-top: 5px;
+             display: flex;
+             justify-content: space-between; 
+         }
+         .delete-icon {
+             color:rgb(252, 252, 252);
+             cursor: pointer;
+             margin-right: 1rem;
+         }
+     </style>
+ </head>
+ <body>
+     <div class="main-div">
+         <h3 style="font-size: 3rem;">To-Do List</h3>
+         <input type="text" id="usrinp" placeholder="Type Something">
+         <button onclick="add()">ADD</button>
+         <ul id="to-do-box">
+ 
+         </ul>
+     </div>
+     <script>
+         function add() {
+             const to_do_box = document.getElementById('to-do-box');
+             const usrinp = document.getElementById('usrinp').value;
+ 
+             if (usrinp.trim() === '') {
+                 alert('Before adding, write something');
+             } else {
+                 let li_elm = document.createElement('li');
+                 li_elm.innerHTML = `
+                 ${usrinp}
+                 <i class="fa fa-trash delete-icon"></i>`;
+                 li_elm.querySelector('.delete-icon').addEventListener('click', function() {
+                     deleteItem(li_elm);
+                 });
+                 to_do_box.appendChild(li_elm);
+                 document.getElementById('usrinp').value = '';
+             }
+         }
+ 
+         function deleteItem(li) {
+             const to_do_box = document.getElementById('to-do-box');
+             to_do_box.removeChild(li); 
+         }
+     </script>
+ </body>
+ </html> 
+
+
+
+ 
